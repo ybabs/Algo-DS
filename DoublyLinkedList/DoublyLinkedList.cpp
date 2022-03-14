@@ -24,6 +24,34 @@ Node* createNewNode(int x)
     return temp;
 }
 
+void Insert(int pos, int x)
+{
+    Node* temp = createNewNode(x);
+
+    Node* p = head;
+
+    if (head == NULL)
+    {
+        head = temp;
+        return;
+    }
+
+    for (int i = 0; i < pos - 1; i++)
+    {
+        p = p->next;
+    }
+
+    temp->next = p->next;
+    temp->prev = p;
+
+    if (p->next != NULL)
+    {
+        p->next->prev = temp;
+    }
+    p->next = temp;
+   
+}
+
 void InsertAtHead(int x)
 {
     Node* temp = createNewNode(x);
@@ -58,6 +86,24 @@ void InsertAtTail(int x)
     tail->next = temp;
     tail = temp;
       
+}
+
+void DeleteNode(int pos)
+{
+    Node* p = head;
+    for (int i = 0; i < pos - 1; i++)
+    {
+        p = p->next;
+    }
+
+    p->prev->next = p->next;
+
+    if (p->next != NULL)
+    {
+        p->next->prev = p->prev;
+    }
+    delete p;
+
 
 }
 
@@ -72,6 +118,26 @@ void Print()
     }
     printf("\n");
 }
+
+void Reverse()
+{
+    Node* p = head;
+    Node* t;
+    while (p != NULL)
+    {
+        t = p->next;
+        p->next = p->prev;
+        p->prev = t;
+        p = p->prev;
+
+        if (p->next == NULL)
+        {
+            head = p;
+        }
+
+    }
+}
+
 
 void ReversePrint()
 {

@@ -1,2 +1,4 @@
 C:\Users\Home\source\repos\LinkedList\Debug\LinkedList.exe
 C:\Users\Home\source\repos\LinkedList\Debug\LinkedList.pdb
+C:\Users\Home\source\repos\Algo-DS\LinkedList\Debug\LinkedList.exe
+C:\Users\Home\source\repos\Algo-DS\LinkedList\Debug\LinkedList.pdb

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <stack>
 
 struct Node {
 	int data;
@@ -32,6 +33,36 @@ void InsertatPos(Node** head, int data, int n)
 
 	temp_node->next = temp2->next;
 	temp2->next = temp_node;
+
+}
+
+// Procedure
+// Use two pointers p and q
+// Move pointer p once each iteration. move pointer q twice.
+// By the time q reaches end of list, q should be in the middle
+Node* FindMiddleNode(Node* head)
+{
+
+	Node* p = head;
+	Node * q = head;
+
+	while (q != NULL)
+	{
+		q = q->next;
+		
+		if (q != NULL)
+		{
+			q = q->next;
+		}
+		
+		if (q != NULL)
+		{
+			p = p->next;
+		}
+	}
+
+	std::cout << p->data << std::endl;
+	return p;
 
 }
 
@@ -166,6 +197,44 @@ void Insert(Node* head, int pos, int data)
 		}
 
 	}
+
+}
+
+// Intersection node can be found by traversing backwards
+// Cheat a bit here and use another data structure
+// Fill the addresses of both linkedlists into a stack 
+// Then exploit the LIFO structure to pop both elements from both 
+// stacks. The intersection point is where each element in the stack differs
+void FindIntersection(Node * a, Node * b)
+{
+	std::stack<Node*> a_stack;
+	std::stack<Node*> b_stack;
+
+	Node* p = a;
+	Node* q = b;
+	Node* r = NULL;
+
+	// fill stack
+	while (p != NULL)
+	{
+		a_stack.push(p);
+		p = p->next;
+	}
+
+	while (q != NULL)
+	{
+		b_stack.push(q);
+		q = q->next;
+	}
+
+	while (a_stack.top()->data == b_stack.top()->data)
+	{
+		r = a_stack.top();
+		a_stack.pop();
+		b_stack.pop();
+	}
+
+	std::cout << "Intersection point is " << r->data << std::endl;
 
 }
 
@@ -424,12 +493,12 @@ int main()
 {
 
 	int A[] = { 3,5,7,15,15 };
-	int B[] = { 2,5,7,12,20 };
+	int B[] = { 2,5,7,15,15 };
 	
 	Node * a = CreateNewNode(A, 5);
 	Node * b = CreateNewNode(B, 5);
 
-	Node* mergedList = Merge(a, b);
+	//Node* mergedList = Merge(a, b);
 	//PrintRecursively(head);
 	//int l = Max(head);
 	//SearchMoveToHead(head, 20);
@@ -442,7 +511,13 @@ int main()
 	//std::cout << val << std::endl;
 
 	//RemoveDuplicates(&head);
-	Print(mergedList);
+	//Print(mergedList);
+
+
+	FindIntersection(a, b);
+
+
+	//Node* c = FindMiddleNode(a);
 
 	delete head;
 
