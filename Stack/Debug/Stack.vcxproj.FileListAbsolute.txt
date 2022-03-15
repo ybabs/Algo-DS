@@ -1,0 +1,2 @@
+C:\Users\Home\source\repos\Algo-DS\Stack\Debug\Stack.exe
+C:\Users\Home\source\repos\Algo-DS\Stack\Debug\Stack.pdb
